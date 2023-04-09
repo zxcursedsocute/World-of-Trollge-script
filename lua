@@ -99,9 +99,11 @@ function itemautofarm()
         if not ItemAutoFarm then break end
         pcall(function()
             for i,v in pairs (game.Workspace:GetDescendants()) do
-                if v.Name == "ProximityPrompt" and v.Parent and v.Parent.Parent.ClassName == "Tool" and v.Parent.Parent.CanBeDropped == false and v.Parent.Parent.Parent.ClassName == "Workspace" then
+                if v.Name == "ProximityPrompt" and v.Parent and v.Parent.Parent.ClassName == "Tool" and v.Parent.Parent.CanBeDropped == false and v.Parent.Parent.Parent.ClassName == "Workspace" or v.Name == "ProximityPrompt" and v.Parent and v.Parent.Parent.Name == "Egg" and v.Parent.Parent.ClassName == "Tool" and v.Parent.Parent.CanBeDropped == true and v.Parent.Parent.Parent.ClassName == "Workspace" then
                     if not ItemAutoFarm then break end
-                game.Players.localPlayer.Character.HumanoidRootPart.CFrame = v.Parent.CFrame + Vector3.new(0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)   
+                game.Players.localPlayer.Character.HumanoidRootPart.CFrame = v.Parent.CFrame + Vector3.new(0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+                fireproximityprompt(v.Parent.ProximityPrompt)
+                fireproximityprompt(v.Parent.ProximityPrompt)   
                 wait(0.15) 
                 fireproximityprompt(v.Parent.ProximityPrompt)
                 wait(0.15)
@@ -128,7 +130,7 @@ function ESP()
     while wait(2) do
         if not ESP1 then break end
         for i, v in pairs (game.Workspace:GetDescendants()) do
-            if v.Name == "ProximityPrompt" and v.Parent and v.Parent.Parent.ClassName == "Tool" and v.Parent.Parent.Name and v.Parent.Parent.CanBeDropped == false and v.Parent.Parent.Parent.ClassName == "Workspace" then
+            if v.Name == "ProximityPrompt" and v.Parent and v.Parent.Parent.ClassName == "Tool" and v.Parent.Parent.Name and v.Parent.Parent.CanBeDropped == false and v.Parent.Parent.Parent.ClassName == "Workspace" or v.Name == "ProximityPrompt" and v.Parent and v.Parent.Parent.Name == "Egg" and v.Parent.Parent.ClassName == "Tool" and v.Parent.Parent.CanBeDropped == true and v.Parent.Parent.Parent.ClassName == "Workspace" then
                 if not ESP1 then break end
                 if not v.Parent.Parent:FindFirstChild("ESP") then
                   local BillboardGui = Instance.new("BillboardGui")
@@ -187,7 +189,7 @@ function autopick()
         for i,v in pairs (game.Workspace:GetDescendants()) do
             if v.Name == "ProximityPrompt" and v.Parent and v.Parent.Parent.ClassName == "Tool" then
                 fireproximityprompt(v.Parent.ProximityPrompt)
-                wait(0.2)
+                wait(0.1)
                 if not AutoPick then break end
             end
         end 
