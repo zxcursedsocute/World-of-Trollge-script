@@ -1,4 +1,5 @@
 getgenv().ItemAutoFarm = false
+getgenv().OnlyEastersEgg = false
 getgenv().ESP1 = false
 getgenv().AutoPick = false
 getgenv().AutoCraft = false
@@ -85,7 +86,7 @@ local Tab = Window:NewTab("Main")
 
 local Section = Tab:NewSection("Auto Farm")
 
-Section:NewToggle("Auto Farm Items(can be lag)", "teleport to items and collect them", function(state)
+Section:NewToggle("Auto Farm Items", "teleport to items and collect them", function(state)
     getgenv().ItemAutoFarm = state
     if state then
         itemautofarm();    
@@ -94,27 +95,58 @@ end)
 
 function itemautofarm()
     spawn(function()
-    while wait() do
-        if not ItemAutoFarm then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace["Safe area"].CFrame break end
-        if not ItemAutoFarm then break end
-        pcall(function()
-            for i,v in pairs (game.Workspace:GetDescendants()) do
-                if v.Name == "ProximityPrompt" and v.Parent and v.Parent.Parent.ClassName == "Tool" and v.Parent.Parent.CanBeDropped == false and v.Parent.Parent.Parent.ClassName == "Workspace" or v.Name == "ProximityPrompt" and v.Parent and v.Parent.Parent.Name == "Egg" and v.Parent.Parent.ClassName == "Tool" and v.Parent.Parent.CanBeDropped == true and v.Parent.Parent.Parent.ClassName == "Workspace" then
-                    if not ItemAutoFarm then break end
-                game.Players.localPlayer.Character.HumanoidRootPart.CFrame = v.Parent.CFrame + Vector3.new(0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-                fireproximityprompt(v.Parent.ProximityPrompt)
-                fireproximityprompt(v.Parent.ProximityPrompt)   
-                wait(0.15) 
-                fireproximityprompt(v.Parent.ProximityPrompt)
-                wait(0.15)
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0.0573774539, -487.000092, -0.0554556288, 0.999999642, 5.61983491e-08, -0.000878473278, -5.62076039e-08, 1, -1.05132543e-08, 0.000878473278, 1.05626272e-08, 0.999999642)
-                wait(0.1)
+        while wait() do
+            if not ItemAutoFarm then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace["Safe area"].CFrame break end
+            if not ItemAutoFarm then break end
+            pcall(function()
+                for i,v in pairs (game.Workspace:GetDescendants()) do
+                    if v.Name == "ProximityPrompt" and v.Parent and v.Parent.Parent.ClassName == "Tool" and v.Parent.Parent.CanBeDropped == false and v.Parent.Parent.Parent.ClassName == "Workspace" or v.Name == "ProximityPrompt" and v.Parent and v.Parent.Parent.Name == "Egg" and v.Parent.Parent.ClassName == "Tool" and v.Parent.Parent.CanBeDropped == true and v.Parent.Parent.Parent.ClassName == "Workspace" then
+                        if not ItemAutoFarm then break end
+                    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = v.Parent.CFrame + Vector3.new(0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+                    fireproximityprompt(v.Parent.ProximityPrompt)
+                    fireproximityprompt(v.Parent.ProximityPrompt)   
+                    wait(0.15) 
+                    fireproximityprompt(v.Parent.ProximityPrompt)
+                    wait(0.15)
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0.0573774539, -487.000092, -0.0554556288, 0.999999642, 5.61983491e-08, -0.000878473278, -5.62076039e-08, 1, -1.05132543e-08, 0.000878473278, 1.05626272e-08, 0.999999642)
+                    wait(0.1)
+                        end
                     end
-                end
-            end 
-        )end
-    end)        
-end
+                end 
+            )end
+        end)        
+    end
+
+Section:NewToggle("Easter eggs only", "teleport to Easters Egg and collect them", function(state)
+    getgenv().OnlyEastersEgg= state
+    if state then
+        onlyeastersegg();    
+    end
+end)
+
+function onlyeastersegg()
+    spawn(function()
+        while wait() do
+            if not OnlyEastersEgg then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace["Safe area"].CFrame break end
+            if not OnlyEastersEgg then break end
+            pcall(function()
+                for i,v in pairs (game.Workspace:GetDescendants()) do
+                    if v.Name == "ProximityPrompt" and v.Parent and v.Parent.Parent.Name == "Egg" and v.Parent.Parent.ClassName == "Tool" and v.Parent.Parent.CanBeDropped == true and v.Parent.Parent.Parent.ClassName == "Workspace" then
+                        if not OnlyEastersEgg then break end
+                    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = v.Parent.CFrame + Vector3.new(0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+                    fireproximityprompt(v.Parent.ProximityPrompt)
+                    fireproximityprompt(v.Parent.ProximityPrompt)   
+                    wait(0.15) 
+                    fireproximityprompt(v.Parent.ProximityPrompt)
+                    wait(0.15)
+                    else
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0.0573774539, -487.000092, -0.0554556288, 0.999999642, 5.61983491e-08, -0.000878473278, -5.62076039e-08, 1, -1.05132543e-08, 0.000878473278, 1.05626272e-08, 0.999999642)
+                        end
+                    end
+                end 
+            )end
+        end)        
+    end
 
 local Section = Tab:NewSection("Esp")
 
@@ -189,8 +221,8 @@ function autopick()
         for i,v in pairs (game.Workspace:GetDescendants()) do
             if v.Name == "ProximityPrompt" and v.Parent and v.Parent.Parent.ClassName == "Tool" then
                 fireproximityprompt(v.Parent.ProximityPrompt)
-                wait(0.1)
                 if not AutoPick then break end
+                wait(0.1)
             end
         end 
     end
@@ -206,12 +238,13 @@ Section:NewToggle("Auto Craft Items", "automatically craft items", function(stat
 end)
 
 function autocraft()
-    while wait(0.1) do
+    while wait() do
         if not AutoCraft then break end
         for i,v in pairs(game:GetService("Workspace")["The J"]:GetDescendants()) do
             if v.Name == "ProximityPrompt" and v.Parent then
                 fireproximityprompt(v.Parent.ProximityPrompt)
                 if not AutoCraft then break end
+                wait(0.1)
             end
         end
     end
@@ -365,13 +398,22 @@ end)
 Section:NewButton("Super Cup", "ButtonInfo", function()
     game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(5126.354, 48.5339813, -15.5235538, 0.100770503, 1.45054129e-08, -0.994909704, 1.27640467e-08, 1, 1.58724482e-08, 0.994909704, -1.42985481e-08, 0.100770503)
  end)
-Section:NewButton("Mechanical Cup", "ButtonInfo", function()
-   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4920.48193, 168.067398, 37.6711235, -0.015548151, -4.38023378e-08, -0.999879122, 6.6791948e-08, 1, -4.48462494e-08, 0.999879122, -6.7481146e-08, -0.015548151)
-end)
+ Section:NewButton("Mechanical Cup", "ButtonInfo", function()
+    game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4920.48193, 168.067398, 37.6711235, -0.015548151, -4.38023378e-08, -0.999879122, 6.6791948e-08, 1, -4.48462494e-08, 0.999879122, -6.7481146e-08, -0.015548151)
+ end)
 
 local Tab = Window:NewTab("Player")
 
-local Section = Tab:NewSection("SpeedHack")
+local Section = Tab:NewSection("Anti Afk")
+
+Section:NewButton("Anti Afk", "ButtonInfo", function()
+    bb=game:service'VirtualUser'
+game:service'Players'.LocalPlayer.Idled:connect(function()
+bb:CaptureController()bb:ClickButton2(Vector2.new())
+end)
+ end)
+
+ local Section = Tab:NewSection("SpeedHack")
 
 Section:NewSlider("WalkSpeed", "SliderInfo", 100, 0, function(W)
     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = W
