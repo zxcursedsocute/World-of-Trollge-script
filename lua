@@ -1,9 +1,11 @@
+--Main
 getgenv().ItemAutoFarm = false
 getgenv().OnlyEastersEgg = false
 getgenv().AutoOpenEgg = false
 getgenv().ESP1 = false
 getgenv().AutoPick = false
 getgenv().AutoCraft = false
+--Items
 getgenv().AutoCraftEmpy = false
 getgenv().AutoCraftBlood = false
 getgenv().AutoCrafMysterious = false
