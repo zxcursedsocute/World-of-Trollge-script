@@ -588,7 +588,7 @@ local Tab = Window:NewTab("Teleport")
 
 local Section = Tab:NewSection("Teleport")
 
-Section:NewButton("Safe Area", "ButtonInfo", function()
+Section:NewButton("Safe Place", "ButtonInfo", function()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace["Safe area"].CFrame
  end)
 Section:NewButton("Spawn", "ButtonInfo", function()
